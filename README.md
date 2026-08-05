@@ -38,7 +38,7 @@ It may also become vulnerable because:
 
 The framework begins classically with stochastic dynamics:
 
-$$
+```math
 \mathrm{d}\mathbf{x}_t
 =
 \mathbf{b}(\mathbf{x}_t,t)\,\mathrm{d}t
@@ -46,21 +46,21 @@ $$
 \boldsymbol{\Sigma}(\mathbf{x}_t,t)\,\mathrm{d}\mathbf{W}_t
 +
 \mathrm{d}\mathbf{J}_t.
-$$
+```
 
 It then extends the representation through amplitudes, phase, superposition, interference, and tunneling-inspired transmission:
 
-$$
+```math
 \Psi = R e^{i\theta},
 \qquad
 \rho = |\Psi|^2.
-$$
+```
 
-$$
+```math
 T_R
 \approx
 \exp\!\left(-\frac{2S_R^*}{\eta}\right).
-$$
+```
 
 The quantum-enhanced layer is used as an **effective mathematical architecture** for pathway interaction and sub-barrier accessibility. It does **not** claim that financial institutions, legal systems, or operational processes are literal quantum systems.
 
@@ -148,7 +148,7 @@ The analytical framework becomes a governance architecture. Barriers and pathway
 
 The final chapter integrates the entire book into one decision architecture:
 
-$$
+```math
 \text{Evidence}
 \rightarrow
 \text{State Geometry}
@@ -166,7 +166,7 @@ $$
 \text{Transmission}
 \rightarrow
 \text{Intervention}.
-$$
+```
 
 The objective is not prediction alone. It is **controlled accessibility**: understanding how risk can travel and changing the structure before the adverse transition becomes irreversible.
 
