@@ -1,1 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <meta name="description" content="Tunneling and Risk Management — a geometric, classical, and quantum-enhanced framework for understanding how risk travels through state spaces, barriers, pathways, and institutions." />
+  <meta name="author" content="Alejandro Reynoso" />
+
+  <title>Tunneling and Risk Management | Research Project</title>
+
+  <style>
+    :root{
+      --navy:#071d35;
+      --navy-2:#0c2948;
+      --blue:#123f68;
+      --blue-soft:#eaf0f5;
+      --ink:#152231;
+      --muted:#607080;
+      --paper:#f7f5ef;
+      --white:#ffffff;
+      --gold:#c9a34c;
+      --gold-dark:#8a6b27;
+      --gold-soft:#e7d49a;
+      --line:#d9d5ca;
+      --soft:#edf2f5;
+      --green:#32734c;
+      --green-soft:#edf8f0;
+      --red:#9b382f;
+      --red-soft:#fbefed;
+      --purple:#604680;
+      --purple-soft:#f2edf7;
+      --shadow:0 16px 42px rgba(7,29,53,.12);
+      --shadow-soft:0 10px 26px rgba(7,29,53,.08);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--paper);
+      color:var(--ink);
+      font:16px/1.65 Inter,"Segoe UI",Arial,sans-serif;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .page{width:min(1180px,calc(100% - 40px));margin:auto}
+    section{padding:78px 0}
+    .sr-only{
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+    }
+
+    /* Navigation */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(7,29,53,.97);
+      backdrop-filter:blur(10px);
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      width:min(1180px,calc(100% - 40px));
+      min-height:68px;
+      margin:auto;
+      padding:10px 0;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:270px;
+    }
+    .brand strong{
+      color:#fff;
+      font:700 14px/1.2 Georgia,"Times New Roman",serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .brand span{color:#b9c7d2;font-size:.78rem}
+    .nav{display:flex;align-items:center;gap:17px;font-size:12px}
+    .nav a{color:#dbe5ed;white-space:nowrap;transition:.18s ease}
+    .nav a:hover,.nav a:focus{color:#fff}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      width:100%;
+      max-width:none;
+      padding:108px max(20px,calc((100vw - 1180px)/2)) 96px;
+      background:
+        linear-gradient(130deg,rgba(7,29,53,.995),rgba(18,63,104,.95)),
+        radial-gradient(circle at 80% 20%,rgba(201,163,76,.16),transparent 36%);
+      color:#fff;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      width:640px;
+      height:640px;
+      border:1px solid rgba(201,163,76,.30);
+      border-radius:50%;
+      right:-210px;
+      top:-310px;
+      box-shadow:
+        0 0 0 72px rgba(201,163,76,.06),
+        0 0 0 145px rgba(201,163,76,.035);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      left:0;right:0;bottom:0;
+      height:5px;
+      background:linear-gradient(90deg,var(--gold),transparent 65%);
+    }
+    .hero-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:54px;
+      align-items:center;
+      width:min(1180px,100%);
+      margin:auto;
+    }
+    .eyebrow,.panel-kicker,.section-kicker{
+      color:#e1c476;
+      text-transform:uppercase;
+      letter-spacing:.17em;
+      font-size:12px;
+      font-weight:800;
+    }
+    h1{
+      max-width:900px;
+      margin:14px 0 22px;
+      color:#fff;
+      font:500 clamp(44px,7vw,78px)/1.01 Georgia,"Times New Roman",serif;
+      letter-spacing:-.035em;
+    }
+    .hero-lead{
+      max-width:835px;
+      margin-bottom:18px;
+      color:#dbe5ed;
+      font:21px/1.55 Georgia,"Times New Roman",serif;
+    }
+    .hero-copy{
+      max-width:800px;
+      margin-bottom:24px;
+      color:#b9c7d2;
+      font-size:1rem;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:34px;
+    }
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border:1px solid var(--gold);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.03em;
+      transition:.18s ease;
+    }
+    .button.primary{background:var(--gold);color:var(--navy)}
+    .button.primary:hover,.button.primary:focus{
+      transform:translateY(-1px);
+      background:#d3b05f;
+    }
+    .button.secondary{background:transparent;color:#fff}
+    .button.secondary:hover,.button.secondary:focus{background:rgba(255,255,255,.08)}
+
+    .hero-panel{
+      padding:34px;
+      border-top:4px solid var(--gold);
+      background:rgba(255,255,255,.98);
+      box-shadow:var(--shadow);
+      color:var(--ink);
+    }
+    .panel-kicker{margin-bottom:8px;color:var(--gold-dark)}
+    .hero-panel h2{
+      margin-bottom:13px;
+      color:var(--navy);
+      font:500 1.85rem/1.15 Georgia,"Times New Roman",serif;
+    }
+    .hero-panel>p{margin-bottom:20px;color:var(--muted);font-size:.96rem}
+    .orientation-list{
+      display:grid;
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+    }
+    .orientation-item{
+      padding:14px;
+      background:#fff;
+      color:#35465a;
+      font-size:.88rem;
+      line-height:1.45;
+    }
+    .orientation-item strong{color:var(--navy)}
+
+    /* Generic headings */
+    .section-header{max-width:970px;margin-bottom:36px}
+    .section-title{
+      margin:8px 0 18px;
+      color:var(--navy);
+      font:500 clamp(32px,4vw,48px)/1.12 Georgia,"Times New Roman",serif;
+      letter-spacing:-.02em;
+    }
+    .section-copy{color:var(--muted);font-size:18px}
+
+    /* Promise */
+    .research-promise{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:1px;
+      align-items:stretch;
+      background:var(--line);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .research-promise>div:first-child{padding:36px;background:#fff}
+    .research-promise h2{
+      margin:8px 0 14px;
+      color:var(--navy);
+      font:500 2rem/1.12 Georgia,"Times New Roman",serif;
+    }
+    .research-promise p{color:var(--muted)}
+    .promise-statement{
+      display:flex;
+      align-items:center;
+      padding:36px;
+      background:var(--navy);
+      color:#e8eef3;
+      font:italic 1.22rem/1.55 Georgia,"Times New Roman",serif;
+    }
+
+    /* Architecture */
+    .architecture{
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .architecture-strip{
+      display:grid;
+      grid-template-columns:repeat(9,1fr);
+      gap:1px;
+      background:var(--line);
+    }
+    .architecture-node{
+      position:relative;
+      min-height:150px;
+      padding:20px 16px;
+      background:#fff;
+    }
+    .architecture-node:not(:last-child):after{
+      content:"→";
+      position:absolute;
+      right:-11px;
+      top:50%;
+      z-index:2;
+      transform:translateY(-50%);
+      width:22px;
+      height:22px;
+      border-radius:50%;
+      background:var(--navy);
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+    }
+    .architecture-index{
+      display:block;
+      margin-bottom:10px;
+      color:var(--gold-dark);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .architecture-node h3{
+      margin-bottom:8px;
+      color:var(--navy);
+      font:600 1.02rem/1.18 Georgia,serif;
+    }
+    .architecture-node p{color:var(--muted);font-size:.82rem}
+    .architecture-principle{
+      padding:19px 24px;
+      border-top:1px solid var(--line);
+      background:var(--soft);
+      color:#405168;
+      text-align:center;
+      font:italic 1rem/1.5 Georgia,serif;
+    }
+
+    /* Classical vs quantum */
+    .dual-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .dual-card{padding:34px;background:#fff}
+    .dual-card.classical{border-top:4px solid var(--blue)}
+    .dual-card.quantum{border-top:4px solid var(--purple)}
+    .dual-label{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+    }
+    .classical .dual-label{color:var(--blue)}
+    .quantum .dual-label{color:var(--purple)}
+    .dual-card h3{
+      margin-bottom:12px;
+      color:var(--navy);
+      font:500 2rem/1.14 Georgia,serif;
+    }
+    .dual-card p{color:var(--muted)}
+    .dual-list{margin-top:18px;padding-left:20px;color:#415166}
+    .dual-list li{margin-bottom:8px}
+    .formula{
+      margin-top:22px;
+      padding:18px;
+      border-left:3px solid var(--gold);
+      background:var(--soft);
+      color:var(--navy);
+      font:500 1rem/1.55 Georgia,"Times New Roman",serif;
+      overflow-wrap:anywhere;
+    }
+
+    /* 15 chapter journey */
+    .parts-stack{display:grid;gap:34px}
+    .part{
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+    .part-head{
+      display:grid;
+      grid-template-columns:86px 1fr;
+      gap:20px;
+      align-items:center;
+      padding:28px 32px;
+      border-bottom:1px solid var(--line);
+    }
+    .part-number{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:68px;
+      height:68px;
+      border-radius:50%;
+      background:var(--navy);
+      color:var(--gold-soft);
+      font:600 1.35rem Georgia,serif;
+    }
+    .part-head h3{
+      margin-bottom:5px;
+      color:var(--navy);
+      font:500 clamp(1.55rem,2.4vw,2.15rem)/1.13 Georgia,serif;
+    }
+    .part-head p{color:var(--muted)}
+    .chapter-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1px;
+      background:var(--line);
+    }
+    .chapter-card{
+      display:flex;
+      flex-direction:column;
+      min-height:280px;
+      padding:25px;
+      background:#fff;
+      transition:.18s ease;
+    }
+    .chapter-card:hover{background:#fcfbf7}
+    .chapter-index{
+      margin-bottom:8px;
+      color:var(--gold-dark);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .chapter-card h4{
+      margin-bottom:10px;
+      color:var(--navy);
+      font:600 1.18rem/1.2 Georgia,serif;
+    }
+    .chapter-card p{color:var(--muted);font-size:.9rem}
+    .chapter-outcome{
+      margin-top:auto;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--blue);
+      font-size:.76rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    /* Applications */
+    .domain-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    .domain-card{
+      display:flex;
+      flex-direction:column;
+      min-height:290px;
+      padding:23px;
+      border:1px solid var(--line);
+      border-top:3px solid var(--gold);
+      background:#fff;
+    }
+    .domain-card:nth-child(2){border-top-color:var(--green)}
+    .domain-card:nth-child(3){border-top-color:var(--purple)}
+    .domain-card:nth-child(4){border-top-color:var(--red)}
+    .domain-index{
+      margin-bottom:8px;
+      color:var(--gold-dark);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .domain-card h3{
+      margin-bottom:10px;
+      color:var(--navy);
+      font:600 1.22rem/1.18 Georgia,serif;
+    }
+    .domain-card p{color:var(--muted);font-size:.9rem}
+    .domain-focus{
+      margin-top:auto;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:#425063;
+      font-size:.82rem;
+    }
+
+    /* Empirical workflow */
+    .workflow{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+    }
+    .workflow-step{
+      position:relative;
+      min-height:210px;
+      padding:24px 20px;
+      background:#fff;
+    }
+    .workflow-step:not(:last-child):after{
+      content:"→";
+      position:absolute;
+      top:50%;
+      right:-11px;
+      z-index:2;
+      transform:translateY(-50%);
+      width:22px;height:22px;
+      display:flex;align-items:center;justify-content:center;
+      border-radius:50%;
+      background:var(--gold);
+      color:var(--navy);
+      font-weight:800;
+      font-size:12px;
+    }
+    .workflow-step span{
+      display:block;
+      margin-bottom:9px;
+      color:var(--green);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.11em;
+      text-transform:uppercase;
+    }
+    .workflow-step h3{
+      margin-bottom:9px;
+      color:var(--navy);
+      font:600 1.08rem/1.16 Georgia,serif;
+    }
+    .workflow-step p{color:var(--muted);font-size:.86rem}
+
+    /* Notebook section */
+    .notebook-panel{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .notebook-copy{padding:36px;background:#fff}
+    .notebook-copy h3{
+      margin:8px 0 14px;
+      color:var(--navy);
+      font:500 2rem/1.12 Georgia,serif;
+    }
+    .notebook-copy p{color:var(--muted)}
+    .notebook-list{
+      padding:34px;
+      background:var(--navy);
+      color:#e5edf3;
+    }
+    .notebook-list ol{padding-left:22px}
+    .notebook-list li{margin-bottom:9px}
+    .notebook-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:24px;
+    }
+
+    /* Appendices */
+    .appendix-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .appendix-card{
+      min-height:240px;
+      padding:25px;
+      border:1px solid var(--line);
+      border-top:4px solid var(--green);
+      background:#fff;
+      box-shadow:var(--shadow-soft);
+    }
+    .appendix-card:nth-child(2){border-top-color:var(--blue)}
+    .appendix-card:nth-child(3){border-top-color:var(--purple)}
+    .appendix-card span{
+      color:var(--green);
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .appendix-card h3{
+      margin:8px 0 10px;
+      color:var(--navy);
+      font:600 1.3rem/1.16 Georgia,serif;
+    }
+    .appendix-card p{color:var(--muted);font-size:.9rem}
+
+    /* Callout */
+    .callout{
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:28px;
+      align-items:center;
+      padding:42px;
+      background:var(--navy);
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .callout h2{
+      margin-bottom:11px;
+      font:500 2.2rem/1.1 Georgia,serif;
+    }
+    .callout p{color:#c8d3dc}
+    .callout-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:11px;
+    }
+    .callout-buttons a{
+      padding:11px 14px;
+      border:1px solid var(--gold);
+      background:var(--gold);
+      color:var(--navy);
+      font-size:.8rem;
+      font-weight:800;
+      text-transform:uppercase;
+    }
+
+    /* Footer */
+    .footer{
+      padding:48px 0;
+      background:#041426;
+      color:#cad5de;
+      font-size:13px;
+    }
+    .footer-inner{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:22px;
+      width:min(1180px,calc(100% - 40px));
+      margin:auto;
+    }
+    .footer strong{color:#fff}
+    .copyright{text-align:right;line-height:1.65}
+
+    @media(max-width:1120px){
+      .architecture-strip{grid-template-columns:repeat(3,1fr)}
+      .chapter-grid{grid-template-columns:repeat(2,1fr)}
+      .domain-grid{grid-template-columns:repeat(2,1fr)}
+      .nav{gap:10px;font-size:11px}
+    }
+
+    @media(max-width:1000px){
+      .hero-grid,
+      .research-promise,
+      .dual-grid,
+      .notebook-panel,
+      .callout{grid-template-columns:1fr}
+      .workflow{grid-template-columns:repeat(2,1fr)}
+      .appendix-grid{grid-template-columns:1fr}
+      .nav{display:none}
+      .hero{padding-top:70px}
+      .callout-buttons{justify-content:flex-start}
+      .copyright{text-align:left}
+    }
+
+    @media(max-width:650px){
+      .page,.topbar-inner,.footer-inner{width:min(100% - 26px,1180px)}
+      section{padding:56px 0}
+      .hero{padding:68px 13px}
+      .hero-panel,
+      .research-promise>div:first-child,
+      .promise-statement,
+      .dual-card,
+      .notebook-copy,
+      .notebook-list,
+      .callout{padding:23px}
+      .part-head{grid-template-columns:1fr;padding:23px}
+      .chapter-grid,
+      .domain-grid,
+      .workflow,
+      .architecture-strip{grid-template-columns:1fr}
+      .chapter-card{min-height:unset}
+      .workflow-step:not(:last-child):after,
+      .architecture-node:not(:last-child):after{display:none}
+      .hero-actions,.button{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>Tunneling and Risk Management</strong>
+        <span>Geometric · Classical · Quantum-Enhanced Risk Architecture</span>
+      </div>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#project">Project</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#journey">15 Chapters</a>
+        <a href="#applications">Applications</a>
+        <a href="#empirical">Empirical</a>
+        <a href="#notebooks">Notebooks</a>
+        <a href="#appendices">Appendices</a>
+        <a href="#access">Access</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="project">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Risk Geometry · Tunneling · Institutional Governance</div>
+
+          <h1>Seeing Risk as a Dynamic Geometry</h1>
+
+          <p class="hero-lead">
+            A research and teaching project that moves beyond static probabilities to examine
+            how systems travel through state spaces, encounter protective barriers, activate
+            hidden pathways, and approach adverse outcomes.
+          </p>
+
+          <p class="hero-copy">
+            <strong>Tunneling and Risk Management</strong> combines classical stochastic dynamics,
+            geometric modeling, network science, machine learning, and a disciplined quantum-enhanced
+            representation of amplitude, phase, interference, action, and transmission. The project
+            includes a complete 15-chapter book, companion Colab notebooks, empirical implementation
+            blueprints, and governance frameworks for high-stakes institutional use.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary"
+               href="https://github.com/alexdibol/tunneling_risk_management"
+               target="_blank"
+               rel="noopener noreferrer">
+              Open Research Repository ↗
+            </a>
+
+            <a class="button secondary" href="#journey">
+              Explore the 15-Chapter Journey
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Research orientation">
+          <div class="panel-kicker">The Research Question</div>
+
+          <h2>How does risk become accessible?</h2>
+
+          <p>
+            The deepest risk question is not only the probability of failure. It is how the system is
+            positioned, what protects it, which routes connect it to danger, how those routes interact,
+            and whether intervention can alter the geometry in time.
+          </p>
+
+          <div class="orientation-list">
+            <div class="orientation-item">
+              <strong>Locate the system.</strong><br />
+              Map its state, manifold, metric, mobility, and distance from fragile or adverse regions.
+            </div>
+
+            <div class="orientation-item">
+              <strong>Measure protection.</strong><br />
+              Estimate barrier height, width, continuity, reliability, capacity, and independence.
+            </div>
+
+            <div class="orientation-item">
+              <strong>Govern accessibility.</strong><br />
+              Detect pathways, stress the geometry, and intervene before the transition becomes irreversible.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="page" id="promise">
+      <div class="research-promise">
+        <div>
+          <div class="section-kicker">The Central Proposition</div>
+
+          <h2>Risk is movement through a structured landscape</h2>
+
+          <p>
+            Borrowers, institutions, markets, operational systems, contracts, and networks occupy
+            positions in multidimensional state spaces. Their trajectories are shaped by drift,
+            covariance, jumps, constraints, protective barriers, pathway structure, and timing.
+            Two systems with similar headline probabilities may therefore face radically different
+            routes to failure—and require radically different interventions.
+          </p>
+        </div>
+
+        <div class="promise-statement">
+          “Understand how risk can travel, measure how accessible the route has become,
+          and act before the transition becomes irreversible.”
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="architecture">
+      <div class="section-header">
+        <div class="section-kicker">Unified Decision Architecture</div>
+
+        <h2 class="section-title">From evidence to governed intervention</h2>
+
+        <p class="section-copy">
+          The research integrates conceptual, mathematical, empirical, computational, and governance
+          layers into one sequential architecture.
+        </p>
+      </div>
+
+      <div class="architecture">
+        <div class="architecture-strip">
+          <article class="architecture-node">
+            <span class="architecture-index">01</span>
+            <h3>Evidence</h3>
+            <p>Timestamp-correct market, financial, operational, legal, textual, and network data.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">02</span>
+            <h3>State Geometry</h3>
+            <p>Manifold, metric, stable region, fragile zone, and adverse region.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">03</span>
+            <h3>Dynamics</h3>
+            <p>Drift, covariance, jumps, regime change, and directional mobility.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">04</span>
+            <h3>Barriers</h3>
+            <p>Capital, liquidity, collateral, controls, contracts, and infrastructure.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">05</span>
+            <h3>Pathways</h3>
+            <p>Observable sequences, hidden routes, shared dependencies, and bypasses.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">06</span>
+            <h3>Phase</h3>
+            <p>Timing, sequencing, persistence, synchronization, and response compatibility.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">07</span>
+            <h3>Action</h3>
+            <p>Minimum integrated resistance required to complete an adverse path.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">08</span>
+            <h3>Transmission</h3>
+            <p>Effective accessibility of the adverse region through the dominant pathway.</p>
+          </article>
+
+          <article class="architecture-node">
+            <span class="architecture-index">09</span>
+            <h3>Governance</h3>
+            <p>Limits, authority, timing, intervention, verification, and accountability.</p>
+          </article>
+        </div>
+
+        <div class="architecture-principle">
+          All components evolve together: shocks and responses can reshape the state space,
+          rotate covariance, weaken barriers, activate pathways, and change the timing of intervention.
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="perspectives">
+      <div class="section-header">
+        <div class="section-kicker">Two Complementary Perspectives</div>
+
+        <h2 class="section-title">Classical first. Quantum-enhanced second.</h2>
+
+        <p class="section-copy">
+          The project does not replace classical risk modeling. It begins with conventional mechanisms
+          and introduces the quantum-enhanced layer only where pathway interaction and timing provide
+          stable empirical value.
+        </p>
+      </div>
+
+      <div class="dual-grid">
+        <article class="dual-card classical">
+          <span class="dual-label">Classical Risk Geometry</span>
+          <h3>Movement, diffusion, thresholds, and contagion</h3>
+          <p>
+            The classical layer explains how systems move through drift, covariance, jumps, regime change,
+            threshold crossing, barrier erosion, liquidity spirals, contagion, and network cascades.
+          </p>
+
+          <ul class="dual-list">
+            <li>Stochastic differential equations and state-space models</li>
+            <li>Covariance ellipsoids and mobility directions</li>
+            <li>Thresholds, hazards, survival models, and transition probabilities</li>
+            <li>Graph contagion, fire sales, runs, and common shocks</li>
+            <li>Classical benchmarks for every empirical application</li>
+          </ul>
+
+          <div class="formula">
+            d<strong>x</strong><sub>t</sub> =
+            b(<strong>x</strong><sub>t</sub>,t)dt +
+            Σ(<strong>x</strong><sub>t</sub>,t)d<strong>W</strong><sub>t</sub> +
+            d<strong>J</strong><sub>t</sub>
+          </div>
+        </article>
+
+        <article class="dual-card quantum">
+          <span class="dual-label">Quantum-Enhanced Risk Architecture</span>
+          <h3>Amplitude, phase, interference, action, and transmission</h3>
+          <p>
+            The extended layer represents how subcritical pathways may reinforce or offset one another
+            through timing, sequencing, persistence, and synchronization.
+          </p>
+
+          <ul class="dual-list">
+            <li>Complex amplitudes as effective modeling objects</li>
+            <li>Phase as observable timing and sequence structure</li>
+            <li>Constructive and destructive pathway interference</li>
+            <li>Minimum-action paths through finite protective barriers</li>
+            <li>Transmission as calibrated adverse accessibility</li>
+          </ul>
+
+          <div class="formula">
+            Ψ = R e<sup>iθ</sup>,
+            &nbsp;&nbsp;ρ = |Ψ|<sup>2</sup>,
+            &nbsp;&nbsp;T<sub>R</sub> ≈ exp(−2S<sub>R</sub><sup>*</sup>/η)
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="journey">
+      <div class="section-header">
+        <div class="section-kicker">The 15-Chapter Journey</div>
+
+        <h2 class="section-title">A cumulative progression from probability to governed accessibility</h2>
+
+        <p class="section-copy">
+          The book is structured as a deliberate intellectual journey. Each chapter introduces one new
+          layer while preserving the discipline of classical benchmarking and empirical validation.
+        </p>
+      </div>
+
+      <div class="parts-stack">
+        <article class="part">
+          <div class="part-head">
+            <div class="part-number">I</div>
+            <div>
+              <h3>Foundations: From Probability to Geometry</h3>
+              <p>Reframing risk as position, distance, movement, and structure in a state space.</p>
+            </div>
+          </div>
+
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 1</span>
+              <h4>From Probability to Geometry</h4>
+              <p>
+                Moves beyond a single probability and introduces neighbourhoods, directions,
+                constraints, trajectories, and geometric accessibility.
+              </p>
+              <div class="chapter-outcome">Foundation: risk as structured movement</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 2</span>
+              <h4>State Spaces and Risk Landscapes</h4>
+              <p>
+                Constructs stable basins, fragile zones, ridges, adverse regions, and economically meaningful coordinates.
+              </p>
+              <div class="chapter-outcome">Foundation: the risk manifold</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 3</span>
+              <h4>Variance, Covariance, and the Geometry of Movement</h4>
+              <p>
+                Interprets covariance as a geometry of mobility that may stretch, rotate,
+                concentrate, or redirect movement toward danger.
+              </p>
+              <div class="chapter-outcome">Foundation: directional uncertainty</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="part">
+          <div class="part-head">
+            <div class="part-number">II</div>
+            <div>
+              <h3>Tunneling Foundations</h3>
+              <p>Introducing finite barriers, amplitudes, phase, interference, action, and transmission.</p>
+            </div>
+          </div>
+
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 4</span>
+              <h4>Barriers, Boundaries, and Protective Structures</h4>
+              <p>
+                Distinguishes visible thresholds from finite protective regions and models
+                barrier height, width, continuity, reliability, and independence.
+              </p>
+              <div class="chapter-outcome">Structure: what protects the system</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 5</span>
+              <h4>The Mathematics and Intuition of Tunneling</h4>
+              <p>
+                Develops the amplitude-phase representation, superposition, interference,
+                barrier action, and exponential transmission.
+              </p>
+              <div class="chapter-outcome">Extension: sub-barrier accessibility</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 6</span>
+              <h4>From Physical Tunneling to Risk Tunneling</h4>
+              <p>
+                Establishes interpretive guardrails and separates tunneling from jumps,
+                omitted variables, model failure, and visible barrier gaps.
+              </p>
+              <div class="chapter-outcome">Discipline: falsifiable interpretation</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="part">
+          <div class="part-head">
+            <div class="part-number">III</div>
+            <div>
+              <h3>Applications Across Risk Domains</h3>
+              <p>Applying one structural language to different institutional environments.</p>
+            </div>
+          </div>
+
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 7</span>
+              <h4>Credit-Risk Tunneling</h4>
+              <p>
+                Models refinancing, collateral, covenant, confidence, employment,
+                reserve, and political pathways across corporate, consumer, and sovereign credit.
+              </p>
+              <div class="chapter-outcome">Application: credit pathways</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 8</span>
+              <h4>Operational and Cyber Risk Tunneling</h4>
+              <p>
+                Connects layered controls, attack graphs, event sequences, shared dependencies,
+                detection delays, and recovery capacity.
+              </p>
+              <div class="chapter-outcome">Application: control architecture</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 9</span>
+              <h4>Legal, Regulatory, and Conduct-Risk Tunneling</h4>
+              <p>
+                Models ambiguity, evidence, conduct, disclosure, precedent,
+                enforceability, remediation, and regulatory timing.
+              </p>
+              <div class="chapter-outcome">Application: enforceability geometry</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 10</span>
+              <h4>Institutional and Systemic Risk Tunneling</h4>
+              <p>
+                Extends the framework to networks, common assets, shared infrastructures,
+                funding channels, collective barriers, and synchronized behaviour.
+              </p>
+              <div class="chapter-outcome">Application: systemic transmission</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="part">
+          <div class="part-head">
+            <div class="part-number">IV</div>
+            <div>
+              <h3>Detection, Measurement, Stress Testing, and Governance</h3>
+              <p>Turning the conceptual framework into an empirical and institutional operating system.</p>
+            </div>
+          </div>
+
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 11</span>
+              <h4>Detecting Hidden Pathways</h4>
+              <p>
+                Uses statistical models, machine learning, graph methods, process mining,
+                NLP, causal inference, and governed AI to estimate structural objects.
+              </p>
+              <div class="chapter-outcome">Empirical layer: detection</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 12</span>
+              <h4>Measuring Tunneling Risk</h4>
+              <p>
+                Creates decomposable measures of distance, barrier weakness, mobility,
+                action, concentration, coherence, interference, transmission, and uncertainty.
+              </p>
+              <div class="chapter-outcome">Empirical layer: measurement</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 13</span>
+              <h4>Stress Testing the Geometry</h4>
+              <p>
+                Recomputes the manifold, covariance, barriers, pathways, phase,
+                action, and transmission under forward, reverse, network, and intervention stress.
+              </p>
+              <div class="chapter-outcome">Empirical layer: stress</div>
+            </article>
+
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 14</span>
+              <h4>Governing Barrier Permeability</h4>
+              <p>
+                Assigns owners, structural limits, intervention authority, timing standards,
+                testing requirements, model controls, and board-level accountability.
+              </p>
+              <div class="chapter-outcome">Institutional layer: governance</div>
+            </article>
+          </div>
+        </article>
+
+        <article class="part">
+          <div class="part-head">
+            <div class="part-number">V</div>
+            <div>
+              <h3>Integration</h3>
+              <p>Bringing all conceptual, empirical, and governance layers into one architecture.</p>
+            </div>
+          </div>
+
+          <div class="chapter-grid">
+            <article class="chapter-card">
+              <span class="chapter-index">Chapter 15</span>
+              <h4>A Unified Framework for Tunneling and Risk Management</h4>
+              <p>
+                Integrates state geometry, dynamics, barriers, pathways, phase, action,
+                transmission, measurement, stress testing, governance, and intervention.
+              </p>
+              <div class="chapter-outcome">Capstone: controlled accessibility</div>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="applications">
+      <div class="section-header">
+        <div class="section-kicker">Application Domains</div>
+
+        <h2 class="section-title">One architecture, different institutional realities</h2>
+
+        <p class="section-copy">
+          The variables and pathways change across domains, but the structural questions remain the same:
+          where is the system, what protects it, how can risk travel, and what intervention changes the route?
+        </p>
+      </div>
+
+      <div class="domain-grid">
+        <article class="domain-card">
+          <span class="domain-index">Domain 1</span>
+          <h3>Credit Risk</h3>
+          <p>
+            Corporate, consumer, and sovereign risk through liquidity, refinancing,
+            collateral, covenant, employment, reserve, confidence, and political pathways.
+          </p>
+          <div class="domain-focus">
+            <strong>Dominant question:</strong> which route reaches default or restructuring with the least action?
+          </div>
+        </article>
+
+        <article class="domain-card">
+          <span class="domain-index">Domain 2</span>
+          <h3>Operational &amp; Cyber Risk</h3>
+          <p>
+            Layered controls, human error, attack paths, infrastructure concentration,
+            shared vendors, detection latency, containment, and recovery.
+          </p>
+          <div class="domain-focus">
+            <strong>Dominant question:</strong> how many controls are truly independent under stress?
+          </div>
+        </article>
+
+        <article class="domain-card">
+          <span class="domain-index">Domain 3</span>
+          <h3>Legal, Regulatory &amp; Conduct Risk</h3>
+          <p>
+            Contractual ambiguity, evidence quality, disclosure, conduct consistency,
+            precedent, enforcement, remediation, and regulatory response.
+          </p>
+          <div class="domain-focus">
+            <strong>Dominant question:</strong> is formal legal protection operationally enforceable?
+          </div>
+        </article>
+
+        <article class="domain-card">
+          <span class="domain-index">Domain 4</span>
+          <h3>Institutional &amp; Systemic Risk</h3>
+          <p>
+            Networks, common assets, funding concentration, collateral systems,
+            market infrastructures, policy capacity, and synchronized behaviour.
+          </p>
+          <div class="domain-focus">
+            <strong>Dominant question:</strong> can individually safe institutions form a fragile system?
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="empirical">
+      <div class="section-header">
+        <div class="section-kicker">Empirical Implementation</div>
+
+        <h2 class="section-title">From conceptual objects to measurable structures</h2>
+
+        <p class="section-copy">
+          The project uses different estimation methods for different structural objects.
+          AI and machine learning are employed as disciplined measurement tools rather than as substitutes for theory.
+        </p>
+      </div>
+
+      <div class="workflow">
+        <article class="workflow-step">
+          <span>Stage 1</span>
+          <h3>Define &amp; Observe</h3>
+          <p>
+            Specify the adverse event, prediction horizon, unit of analysis, timestamp-correct data,
+            and classical benchmark.
+          </p>
+        </article>
+
+        <article class="workflow-step">
+          <span>Stage 2</span>
+          <h3>Estimate Geometry</h3>
+          <p>
+            Learn the manifold, metric, stable and adverse regions, drift, covariance,
+            and mobility directions.
+          </p>
+        </article>
+
+        <article class="workflow-step">
+          <span>Stage 3</span>
+          <h3>Reconstruct Protection</h3>
+          <p>
+            Estimate barrier availability, reliability, capacity, width,
+            continuity, and dependency-adjusted independence.
+          </p>
+        </article>
+
+        <article class="workflow-step">
+          <span>Stage 4</span>
+          <h3>Discover Pathways</h3>
+          <p>
+            Apply process mining, graph models, sequence methods, causal analysis,
+            and structured evidence extraction.
+          </p>
+        </article>
+
+        <article class="workflow-step">
+          <span>Stage 5</span>
+          <h3>Measure &amp; Govern</h3>
+          <p>
+            Compute phase, coherence, interference, action, transmission,
+            stress tests, interventions, uncertainty, limits, and reporting.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="notebooks">
+      <div class="notebook-panel">
+        <div class="notebook-copy">
+          <div class="section-kicker">Companion Colab Notebooks</div>
+
+          <h3>The book becomes an executable learning environment</h3>
+
+          <p>
+            The notebooks translate each chapter into visual and computational exercises.
+            Readers can manipulate parameters, compare classical and quantum-enhanced interpretations,
+            reconstruct barriers and pathways, run stress tests, and evaluate interventions.
+          </p>
+
+          <div class="notebook-actions">
+            <a class="button primary"
+               href="https://github.com/alexdibol/tunneling_risk_management"
+               target="_blank"
+               rel="noopener noreferrer">
+              Browse Repository ↗
+            </a>
+
+            <a class="button secondary"
+               style="color:var(--navy);border-color:var(--navy)"
+               href="https://github.com/alexdibol/tunneling_risk_management/blob/main/README.md"
+               target="_blank"
+               rel="noopener noreferrer">
+              Read Project README ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="notebook-list">
+          <ol>
+            <li>Visualize state manifolds and risk landscapes.</li>
+            <li>Map stable, fragile, and adverse regions.</li>
+            <li>Estimate covariance ellipsoids and mobility directions.</li>
+            <li>Construct finite protective barriers.</li>
+            <li>Discover classical and minimum-action pathways.</li>
+            <li>Simulate amplitude, phase, and interference.</li>
+            <li>Calculate transmission and composite risk measures.</li>
+            <li>Run forward and reverse stress tests.</li>
+            <li>Compare intervention portfolios.</li>
+            <li>Generate governance-ready reports.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="appendices">
+      <div class="section-header">
+        <div class="section-kicker">Research Appendices</div>
+
+        <h2 class="section-title">A complete implementation package</h2>
+
+        <p class="section-copy">
+          Three appendices consolidate the mathematical reference, production blueprint,
+          and worked applications required to move from conceptual exploration to empirical implementation.
+        </p>
+      </div>
+
+      <div class="appendix-grid">
+        <article class="appendix-card">
+          <span>Appendix A</span>
+          <h3>Mathematical and Empirical Reference Architecture</h3>
+          <p>
+            Consolidated notation, state dynamics, metrics, barriers, pathways,
+            amplitudes, phase, action, transmission, measurement, stress testing, and governance.
+          </p>
+        </article>
+
+        <article class="appendix-card">
+          <span>Appendix B</span>
+          <h3>Empirical Implementation Blueprint</h3>
+          <p>
+            Data schema, estimation modules, model-comparison ladder, validation,
+            AI architecture, production controls, and a corporate-credit pilot.
+          </p>
+        </article>
+
+        <article class="appendix-card">
+          <span>Appendix C</span>
+          <h3>Worked Applications and Illustrative Calculations</h3>
+          <p>
+            Detailed examples across credit, cyber, legal, and systemic risk,
+            including pathway probabilities, coherence, action, transmission, and interventions.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="access">
+      <div class="callout">
+        <div>
+          <h2>Understand the geometry. Measure the pathways. Govern the transition.</h2>
+
+          <p>
+            This project is an invitation to see risk not as a static number, but as a dynamic,
+            structured, and governable landscape. Explore the book, run the notebooks, test the models,
+            and extend the framework to new institutional domains.
+          </p>
+        </div>
+
+        <div class="callout-buttons">
+          <a href="https://github.com/alexdibol/tunneling_risk_management"
+             target="_blank"
+             rel="noopener noreferrer">
+            Repository ↗
+          </a>
+
+          <a href="https://github.com/alexdibol/tunneling_risk_management/blob/main/README.md"
+             target="_blank"
+             rel="noopener noreferrer">
+            README ↗
+          </a>
+
+          <a href="https://github.com/alexdibol/tunneling_risk_management/blob/main/LICENSE"
+             target="_blank"
+             rel="noopener noreferrer">
+            MIT License ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Tunneling and Risk Management</strong><br />
+        A geometric, classical, and quantum-enhanced research architecture
+      </div>
+
+      <div class="copyright">
+        © 2026 Alejandro Reynoso. All rights reserved.<br />
+        Code released under the MIT License.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
